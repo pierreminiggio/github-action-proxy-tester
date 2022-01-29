@@ -10,9 +10,6 @@ jobs:
   get:
     name: Proxy Tester
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ['3.8']
     steps:
       - uses: actions/checkout@main
       - run: sudo apt update
