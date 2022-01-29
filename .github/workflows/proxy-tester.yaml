@@ -1,0 +1,26 @@
+on:
+  workflow_dispatch:
+    inputs:
+      proxy:
+        description: "Proxy URL"
+        required: true
+        default: ""
+name: Proxy Tester
+jobs:
+  get:
+    name: Proxy Tester
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.8']
+    steps:
+      - uses: actions/checkout@main
+      - run: sudo apt update
+      - run: sudo apt-get install curl
+      - run: curl -x $proxy -L https://api.myip.com > output.json
+        env:
+          proxy: ${{ github.event.inputs.proxy }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: output.json
+          path: output.json
