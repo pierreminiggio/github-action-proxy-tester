@@ -17,7 +17,7 @@ jobs:
       - run: curl -x $proxy -L https://api.myip.com > output.json
         env:
           proxy: ${{ github.event.inputs.proxy }}
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: output.json
           path: output.json
